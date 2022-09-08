@@ -136,7 +136,8 @@ const blogUpdateValidation = function(req, res, next){
       return res.status(400).send({status:false, msg:'Empty field not allowed'})
 
       if(data.title == '' || !/^[a-zA-Z0-9 :-]+$/.test(data.title))
-add 
+      return res.status(400).send({error:'Invalid title format ! ONLY ALPHA-NUMERIC ALLOWED'})
+
       if(data.body == '' || !/^[a-zA-Z0-9.!"'? :-]+$/.test(data.body))
       return res.status(400).send({status:false, msg:'Invalid body format ! ONLY ALPHA-NUMERIC, (. ! " ? : -) ALLOWED'})
 
