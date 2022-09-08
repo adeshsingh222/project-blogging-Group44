@@ -32,7 +32,7 @@ try{  let data = req.body
   if(!data.email)
   return res.status(400).send({status:false, msg:'email required'})
   let emailId =req.body.email
-  console.log(emailId)
+  // console.log(emailId)
   let matchedEmail = await authorModel.find({email:emailId})
 
   if(matchedEmail.email == data.email)
@@ -72,7 +72,7 @@ const blogCreateValidataion = function(req,res,next){
 try{    
     let data = req.body
 
-    const comp = ["subcategory", "category", "tags", "authorId","tilte","body"]
+    const comp = ["subcategory", "category", "tags", "authorId","title","body"]
     if (!Object.keys(data).every(elem => comp.includes(elem)))
     return res.status(400).send({ status: false, msg: "wrong field !" });
 
@@ -93,6 +93,7 @@ try{
     //validation for tags
     if(!data.tags)
     return res.status(400).send({status:false, msg:'tags required'})
+    //needed or not
     if(Object.keys(data.tags).length==0)
     return res.status(400).send({error:'Invalid tags'})
     if(data.tags == '' || !/^[a-zA-Z ]+$/.test(data.tags))
@@ -135,8 +136,7 @@ const blogUpdateValidation = function(req, res, next){
       return res.status(400).send({status:false, msg:'Empty field not allowed'})
 
       if(data.title == '' || !/^[a-zA-Z0-9 :-]+$/.test(data.title))
-      return res.status(400).send({error:'Invalid title format ! ONLY ALPHA-NUMERIC ALLOWED'})
-
+add 
       if(data.body == '' || !/^[a-zA-Z0-9.!"'? :-]+$/.test(data.body))
       return res.status(400).send({status:false, msg:'Invalid body format ! ONLY ALPHA-NUMERIC, (. ! " ? : -) ALLOWED'})
 

@@ -11,9 +11,6 @@ const verifyAuthor = async function (req, res, next) {
     }
     let validation = jwt.verify(token, "vro party all night!!!!!!!!");
  
-    if (!validation) {
-      return res.status(401).send({status:false, msg:'Invalid token'});
-    } 
     let authorId = validation.loginId
     let finalId = await authorModel.findById(authorId)
     if(!finalId)
